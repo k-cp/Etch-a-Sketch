@@ -54,7 +54,8 @@ slider.oninput = function() {
 
 function changeColor(e) {
     const selected = e.target;
-    selected.style.backgroundColor = 'red';
+    const color = darker_rgb(selected.style.backgroundColor);
+    selected.style.backgroundColor = `${color}`;
 }
 
 function clearColor() {
@@ -67,4 +68,31 @@ function clearColor() {
 function clearBox(elementClass)
 {
     document.querySelector(`${elementClass}`).innerHTML = "";
+}
+
+function random_rgb() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgb(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ')';
+}
+
+function darker_rgb(former) {
+    if (!former == true) {
+        console.log(former);
+        return random_rgb()
+    }
+    const values = extractRGBValues(former);
+    return `rgb(${values['red']-values['red']/3}, ${values["red"]-values["red"]/3}, ${values["red"]-values["red"]/3})`
+}
+
+function extractRGBValues(rgbString) {
+    const match = rgbString.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+    
+    if (match) {
+        const red = parseInt(match[1]);
+        const green = parseInt(match[2]);
+        const blue = parseInt(match[3]);
+        return { red, green, blue };
+    } else {
+        return null; // RGB format doesn't match
+    }
 }
