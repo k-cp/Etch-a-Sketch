@@ -9,7 +9,6 @@ for (let i = 0; i < 16; i++) {
     //create 16div inside row div
     for (let j = 0; j < 16; j++) {
         const box = document.createElement('div');
-        box.style.backgroundColor = "orange";
         box.style.border = 'solid black';
         box.style.minBlockSize = `${parseInt(div.style.height)/16}px`;
         box.style.boxSizing = 'border-box';
@@ -20,4 +19,13 @@ for (let i = 0; i < 16; i++) {
     div.appendChild(row);
 }
 
-const box = document.querySelectorAll('.box');
+const boxes = document.querySelectorAll('.box');
+boxes.forEach(box => box.addEventListener('mouseover', changeColor))
+
+
+
+function changeColor(e) {
+    const selected = e.target
+    console.log(e.target)
+    selected.style.backgroundColor = 'red';
+}
