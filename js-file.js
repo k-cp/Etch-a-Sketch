@@ -22,10 +22,18 @@ for (let i = 0; i < 16; i++) {
 const boxes = document.querySelectorAll('.box');
 boxes.forEach(box => box.addEventListener('mouseover', changeColor))
 
+const clear = document.querySelector('#clear');
 
+clear.addEventListener('click', clearColor);
 
 function changeColor(e) {
-    const selected = e.target
-    console.log(e.target)
+    const selected = e.target;
     selected.style.backgroundColor = 'red';
+}
+
+function clearColor() {
+    boxes.forEach(function (box) {
+        const selected = box;
+        selected.style.backgroundColor = 'white';
+    })
 }
