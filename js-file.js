@@ -47,7 +47,7 @@ slider.oninput = function() {
         div.appendChild(row);
     }
     boxes = document.querySelectorAll('.box');
-    boxes.forEach(box => box.addEventListener('mouseover', changeColor))
+    boxes.forEach(box => box.addEventListener('mouseover', changeColor));
     clear.addEventListener('click', clearColor);
 
   }
@@ -63,6 +63,8 @@ function clearColor() {
         const selected = box;
         selected.style.backgroundColor = 'white';
     })
+    boxes = document.querySelectorAll('.box');
+    boxes.forEach(box => box.addEventListener('mouseover', changeColor));
 }
 
 function clearBox(elementClass)
@@ -76,12 +78,11 @@ function random_rgb() {
 }
 
 function darker_rgb(former) {
-    if (!former == true) {
-        console.log(former);
+    if (!former == true || former == 'white') {
         return random_rgb()
     }
     const values = extractRGBValues(former);
-    return `rgb(${values['red']-values['red']/3}, ${values["red"]-values["red"]/3}, ${values["red"]-values["red"]/3})`
+    return `rgb(${values['red']-values['red']/8}, ${values["red"]-values["red"]/8}, ${values["red"]-values["red"]/8})`
 }
 
 function extractRGBValues(rgbString) {
